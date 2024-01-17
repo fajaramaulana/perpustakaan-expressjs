@@ -5,10 +5,8 @@ let saltRounds = process.env.SALT || 10 // Number of salt rounds, higher is more
 const hashPassword = async (password) => {
   try {
     saltRounds = parseInt(saltRounds, 10)
-    console.log(`saltRounds: ${saltRounds}`)
     const salt = await bcrypt.genSalt(saltRounds)
     const hashedPassword = await bcrypt.hash(password, salt)
-    console.log(`hashPassword: ${hashedPassword}`)
     return hashedPassword
   } catch (error) {
     console.log(error)
