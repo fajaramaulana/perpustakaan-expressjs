@@ -23,17 +23,6 @@ Role.belongsToMany(User, {
   otherKey: 'user_id'
 })
 
-Role.belongsToMany(Permission, {
-  through: RolePermission,
-  foreignKey: 'role_id',
-  otherKey: 'permission_id'
-})
-Permission.belongsTo(Role, {
-  through: RolePermission,
-  foreignKey: 'role_id',
-  otherKey: 'permission_id'
-})
-
 Book.hasMany(BorrowBook, { foreignKey: 'book_id' })
 BorrowBook.belongsTo(Book, { foreignKey: 'book_id' })
 
