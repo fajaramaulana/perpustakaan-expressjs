@@ -77,4 +77,11 @@ const User = sequelize.define(
   }
 )
 
+// Define a toJSON method to exclude password when converting to JSON
+User.prototype.toJSON = function () {
+  const values = { ...this.get() }
+  delete values.password
+  return values
+}
+
 module.exports = User
