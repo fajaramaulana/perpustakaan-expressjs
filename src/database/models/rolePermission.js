@@ -20,7 +20,7 @@ const RolePermission = sequelize.define(
       },
       references: {
         model: Role, // Use the imported Role model
-        key: 'id' // Assuming 'id' is the primary key of the Role model
+        key: 'role_id' // Assuming 'id' is the primary key of the Role model
       },
       onDelete: 'CASCADE'
     },
