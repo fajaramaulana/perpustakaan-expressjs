@@ -3,9 +3,17 @@ const bodyParser = require('body-parser')
 const helmet = require('helmet')
 const morgan = require('morgan')
 const setupDatabase = require('./src/database/databaseSetup')
+const multer = require('multer')
 
 const app = express()
 const PORT = process.env.PORT || 3000
+
+const Router = require('./src/routes/api_v1/index')
+// Set up multer to handle form-data
+const upload = multer()
+
+// Use the middleware for all routes or a specific route
+app.use(upload.any())
 app.use(express.json())
 
 app.use(express.static('public'))
@@ -29,9 +37,23 @@ if (process.env.NODE_ENV === 'development') {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use('/api/v1/', Router)
+
+// // Middleware to handle not found routes
+// app.use((req, res, next) => {
+//   res.status(404).json({ error: 'Not found' })
+// })
+
+// // Middleware to handle errors
+// app.use((err, req, res, next) => {
+//   console.error(err)
+//   res.status(500).json({ error: 'Internal server error', message: err.message, data: err })
+// })
+
+// // middleware to handle wrong method
+// app.use((req, res, next) => {
+//   res.status(405).json({ error: 'Method not allowed' })
+// })
 
 // Setup the database
 setupDatabase()
