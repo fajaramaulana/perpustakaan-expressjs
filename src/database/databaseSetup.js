@@ -41,7 +41,6 @@ async function setupDatabase () {
     console.error('Unable to connect to the database:', error)
     throw error // Re-throw the error to handle it elsewhere if needed
   } finally {
-    await sequelizeCon.close()
     console.log('===================== FINISH PROCESS SETUP DATABASE =====================')
   }
 }
