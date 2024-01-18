@@ -6,7 +6,7 @@ const registerController = async (req, res, next) => {
   try {
     const user = await registerUserService(req.body)
     // return res.status(201).json(response.success('User successfully registered', user))
-    res.status(201).json(response.success('User successfully registered', user))
+    res.status(201).json(response.success(user, 'User successfully registered'))
   } catch (error) {
     console.log(`error on registerController: ${error}`)
     if (process.env.NODE_ENV === 'development') {
@@ -20,7 +20,7 @@ const registerController = async (req, res, next) => {
 const loginController = async (req, res, next) => {
   try {
     const user = await loginUserService(req.body)
-    res.status(200).json(response.success('User successfully logged in', user))
+    res.status(200).json(response.success(user, 'User successfully logged in'))
   } catch (error) {
     console.log(`error on loginController: ${error}`)
     const errorMessage = error.message.split('-')
