@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "320c55e6-3ade-46a5-80a7-ce41645fac47",
+		"name": "Perpustakaan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12510130"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"fajaragusmaulana\",\r\n    \"email\": \"fajar@gmail.com\",\r\n    \"password\": \"fajar123\",\r\n    \"name\" : \"fajar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/auth/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "superadmin@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "list book",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3NzhjNTU4LTk4M2QtNDIxZi1hZDM3LTgxNjUxMTNmYzFmZiIsImVtYWlsIjoiZmFzamFyQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiZmFqYXJhZ3VzIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDU1NDI3MDYsImV4cCI6MTcwNTYyOTEwNn0.Q-tzmMy-R3pcSLCOfdRKGe7UtujQVfDL6sDB9XLPeEM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/v1/book",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrow Book",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM4N2U0NDEtZTQ3OS00ZjdkLTkzNWMtYTRhZjYwYjFlODQ5IiwiZW1haWwiOiJmYWphckBnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImZhamFyYWd1c21hdWxhbmEiLCJyb2xlIjoidXNlciIsImlhdCI6MTcwNTU1NDc4MiwiZXhwIjoxNzA1NjQxMTgyfQ.DCeS7FLIXYl_J4Kg2thgSL-PaoO4_6bbR5UNi9YOGFM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "book_id",
+									"value": "8fa95152-e5ad-4969-8e97-591a6272800d",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/book/borrow",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"book",
+								"borrow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List borrowed by user login",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM4N2U0NDEtZTQ3OS00ZjdkLTkzNWMtYTRhZjYwYjFlODQ5IiwiZW1haWwiOiJmYWphckBnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImZhamFyYWd1c21hdWxhbmEiLCJyb2xlIjoidXNlciIsImlhdCI6MTcwNTU1NDc4MiwiZXhwIjoxNzA1NjQxMTgyfQ.DCeS7FLIXYl_J4Kg2thgSL-PaoO4_6bbR5UNi9YOGFM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/v1/book/getlistcorrowedbyuser",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"book",
+								"getlistcorrowedbyuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list Borrow Book By User Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiODM4N2U0NDEtZTQ3OS00ZjdkLTkzNWMtYTRhZjYwYjFlODQ5IiwiZW1haWwiOiJmYWphckBnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImZhamFyYWd1c21hdWxhbmEiLCJyb2xlIjoidXNlciIsImlhdCI6MTcwNTU1NDc4MiwiZXhwIjoxNzA1NjQxMTgyfQ.DCeS7FLIXYl_J4Kg2thgSL-PaoO4_6bbR5UNi9YOGFM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/v1/book/borrowbookbyuserid/8387e441-e479-4f7d-935c-a4af60b1e849",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"book",
+								"borrowbookbyuserid",
+								"8387e441-e479-4f7d-935c-a4af60b1e849"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin list borrowed book",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYTc5NGUxZDQtN2Y2Mi00ZGRiLWE3NzktYTA0ZjI5NDIzY2QzIiwiZW1haWwiOiJzdXBlcmFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoic3VwZXJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwNTU1NjU2OSwiZXhwIjoxNzA1NjQyOTY5fQ.W3ncxDJipw9PsF6sTkBK09X6puUlayTJkWMtG2TEwEk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/v1/book/listallborrowedbook",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"book",
+								"listallborrowedbook"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3003",
+			"type": "string"
+		}
+	]
+}
