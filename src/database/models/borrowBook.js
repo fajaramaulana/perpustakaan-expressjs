@@ -35,7 +35,7 @@ const BorrowBook = sequelize.define('BorrowBook', {
     defaultValue: DataTypes.NOW
   },
   createdBy: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
     defaultValue: 0
   },
@@ -44,18 +44,12 @@ const BorrowBook = sequelize.define('BorrowBook', {
     allowNull: false
   },
   updatedBy: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
     defaultValue: 0
   }
 }, {
-  tableName: 'borrow_books',
-  indexes: [
-    {
-      unique: true,
-      fields: ['book_id', 'user_id']
-    }
-  ]
+  tableName: 'borrow_books'
 })
 
 module.exports = BorrowBook

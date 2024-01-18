@@ -24,10 +24,10 @@ Role.belongsToMany(User, {
 })
 
 Book.hasMany(BorrowBook, { foreignKey: 'book_id' })
-BorrowBook.belongsTo(Book, { foreignKey: 'book_id' })
+BorrowBook.belongsTo(Book, { foreignKey: 'book_id', as: 'books' })
 
 User.hasMany(BorrowBook, { foreignKey: 'user_id' })
-BorrowBook.belongsTo(User, { foreignKey: 'user_id' })
+BorrowBook.belongsTo(User, { foreignKey: 'user_id', as: 'users' })
 
 const models = {
   User,

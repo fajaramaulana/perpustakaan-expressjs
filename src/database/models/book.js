@@ -21,7 +21,7 @@ const Book = sequelize.define('Book', {
     defaultValue: DataTypes.NOW
   },
   createdBy: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
     defaultValue: 0
   },
@@ -30,7 +30,7 @@ const Book = sequelize.define('Book', {
     allowNull: false
   },
   updatedBy: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
     defaultValue: 0
   }
