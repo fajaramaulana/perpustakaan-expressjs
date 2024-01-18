@@ -105,7 +105,7 @@ const loginUserService = async (userData) => {
     })
 
     const payload = {
-      id: user.user_id,
+      user_id: user.user_id,
       email: user.email,
       username: user.username,
       role: userWithRelation.Roles[0].name
