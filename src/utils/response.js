@@ -3,8 +3,8 @@
 const response = {
   success: (data = null, message = 'Request succeeded') => ({
     success: true,
-    data,
-    message
+    message,
+    data
   }),
 
   error: (message = 'Internal Server Error', code = 500, errors = []) => ({
