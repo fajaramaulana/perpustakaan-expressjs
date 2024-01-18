@@ -1,6 +1,7 @@
-const { hashPassword } = require('../utils/authHelper')
+const { hashPassword, verifyPassword } = require('../utils/authHelper')
 const { User, Role, UserRole } = require('../database/models')
 const sequelizeCon = require('../configs/sequelize')
+const { generateJWT } = require('../utils/jwthelper')
 
 const registerUserService = async (userData) => {
   let transaction
@@ -71,6 +72,60 @@ const registerUserService = async (userData) => {
   }
 }
 
+const loginUserService = async (userData) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        email: userData.email
+      }
+    })
+
+    if (!user) {
+      throw new Error('Email not found or Wrong password-401')
+    }
+
+    const passwordMatch = await verifyPassword(userData.password, user.password)
+    if (!passwordMatch) {
+      throw new Error('Email not found or Wrong password-401')
+    }
+
+    const userWithRelation = await User.findOne({
+      where: {
+        email: userData.email
+      },
+      include: [
+        {
+          model: Role,
+          as: 'Roles',
+          through: {
+            attributes: []
+          }
+        }
+      ]
+    })
+
+    const payload = {
+      id: user.user_id,
+      email: user.email,
+      username: user.username,
+      role: userWithRelation.Roles[0].name
+    }
+
+    const jwtToken = generateJWT(payload)
+
+    const returnData = {
+      user: payload,
+      token: jwtToken
+    }
+
+    return returnData
+  } catch (error) {
+    console.log(`error on loginUserService: ${error}`)
+    throw new Error(error.message)
+  }
+}
+
 module.exports = {
-  registerUserService
+  registerUserService,
+  loginUserService
 }

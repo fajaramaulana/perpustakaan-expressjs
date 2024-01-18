@@ -25,6 +25,22 @@ const registerValidationRules = () => {
   ]
 }
 
+const loginValidationRules = () => {
+  return [
+    // Validate email
+    body('email')
+      .isEmail().withMessage('Invalid email address')
+      .normalizeEmail(), // Sanitize email address
+
+    // Validate password
+    body('password')
+      .isLength({ min: 8 }).withMessage('Password must be at least 8 characters')
+      .matches(/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/)
+      .withMessage('Password must contain at least one letter and one number')
+  ]
+}
+
 module.exports = {
-  registerValidationRules
+  registerValidationRules,
+  loginValidationRules
 }
